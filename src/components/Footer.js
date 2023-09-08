@@ -1,11 +1,11 @@
 import React from 'react';
-import { Typography, Link, Grid } from '@mui/material';
+import { Typography, Link, } from '@mui/material';
 import { styled } from '@mui/system';
 
 const FooterContainer = styled('footer')({
   backgroundColor: 'black',
   color: 'white',
-  padding: '16px',
+  padding: '25px',
   textAlign: 'center',
   left: 0,
   bottom: 0,
@@ -14,6 +14,12 @@ const FooterContainer = styled('footer')({
 
 const BoldMenuItem = styled('span')({
   fontWeight: 'bold',
+  '&:not(:last-child)': {
+    marginRight: '40px', // Adjust this value to control the spacing between items
+  },
+});
+const ExtraSpacing = styled('span')({
+  marginRight: '40px', // Add extra spacing here between "Remote work" and "UX design"
 });
 
 const UnderlineLink = styled(Link)({
@@ -25,7 +31,8 @@ const CenteredContainer = styled('div')({
   justifyContent: 'space-around',
   alignItems: 'center',
   flexWrap: 'wrap',
-  width: '100%'
+  width: '100%',
+  marginBottom:'20px',
 });
 const CenteredSocialLinks = styled('div')({
   display: 'flex',
@@ -33,7 +40,9 @@ const CenteredSocialLinks = styled('div')({
   alignItems: 'center',
   flexWrap: 'wrap',
   width: '100%',
-  color: 'white'
+  color: 'white',
+  '& a' :{
+    margin:'-100px'}
 });
 
 const Footer = () => {
@@ -41,16 +50,18 @@ const Footer = () => {
     <FooterContainer>
       <CenteredContainer>
         <Typography variant="subtitle1" >
-          <BoldMenuItem>Digital product design</BoldMenuItem>
-          Remote work
+          <BoldMenuItem> Digital </BoldMenuItem>
+           <BoldMenuItem> product </BoldMenuItem>
+           <BoldMenuItem> design</BoldMenuItem>
+           <ExtraSpacing>Remote work</ExtraSpacing>
           <BoldMenuItem>UX design</BoldMenuItem>
-          Distributed teams
+          <ExtraSpacing>Distributed teams</ExtraSpacing>
           <BoldMenuItem>Creativity</BoldMenuItem>
-          Strategy
+          <ExtraSpacing>Strategy</ExtraSpacing>
           <BoldMenuItem>Suspense</BoldMenuItem>
-          Growth
+          <ExtraSpacing>Growth</ExtraSpacing>
         </Typography>
-      </CenteredContainer>
+      </CenteredContainer><br/>
       <Typography variant="h6" gutterBottom>
         NORDIC ROSE
       </Typography>
@@ -64,7 +75,7 @@ const Footer = () => {
         <div style={{ lineHeight: '1.5' }}>
           Duis eu velit tempus erat egestas efficitur.
         </div>
-      </Typography>
+      </Typography><br/>
       <CenteredSocialLinks>
         <Typography variant="subtitle1">
           <UnderlineLink href="#">Twitter</UnderlineLink>
@@ -75,7 +86,7 @@ const Footer = () => {
         <Typography variant="subtitle1">
           <UnderlineLink href="#">RSS</UnderlineLink>
         </Typography>
-      </CenteredSocialLinks>
+      </CenteredSocialLinks><br/><br/>
       <Typography variant="body2">
         © 2012–2020 Nordic Rose Co. All rights reserved.
       </Typography>

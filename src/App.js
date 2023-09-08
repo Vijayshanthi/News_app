@@ -8,6 +8,7 @@ import Links from './pages/Links';
 import Projects from './pages/Projects.js';
 import About from './pages/About';
 import Footer from './components/Footer';
+import Api from './components/Api';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/links" element={<Links />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<About />} />
+          <Route path="/Api" element={<Api />} />
+
         </Routes>
       </Container>
       <Footer />

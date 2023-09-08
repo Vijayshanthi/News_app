@@ -1,41 +1,10 @@
 // src/pages/Articles.js
 import React from 'react';
-import { Container, Grid, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Container, Grid, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
 
 // Example data for articles
-const articles = [
-  {
-    id: 1,
-    title: 'Here are some things you should know regarding how we work ',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  },
-  {
-    id: 2,
-    title: 'Granny gives everyone the finger, and other tips from OFFF Barcelona',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  }, {
-    id: 3,
-    title: 'Hello world, or, in other words, why this blog exists',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  },
-  {
-    id: 4,
-    title: 'Here are some things you should know regarding how we work ',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  },
-  {
-    id: 5,
-    title: 'Connecting artificial intelligence with digital product design',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  },
-  {
-    id: 6,
-    title: 'Its all about finding the perfect balance',
-    imageUrl: 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg',
-  },
-  // Add more articles here
-];
 
 const ArticleContainer = styled('div')({
   textAlign: 'center',
@@ -43,25 +12,99 @@ const ArticleContainer = styled('div')({
 });
 
 const BoldTitle = styled(Typography)({
-  fontWeight: 'bold',
+  fontWeight: 'Bold',
+  textAlign: 'center', 
+});
+
+const ArticlesPerPage = 6; // Number of articles to display per page
+
+const PaginationContainer = styled('div')({
+  marginTop: '20px',
+  textAlign: 'center',
+});
+
+const PaginationButton = styled(Button)({
+  margin: '0 5px',
+  backgroundColor: 'white',
+  color:'black',
+  '&:hover': {
+    backgroundColor: 'black', // Change background color on hover
+    color: 'white',},
+   // Adjust the margin to control the space between buttons
 });
 
 const Articles = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [articles, setarticles] = useState([])
+  React.useEffect(() => {
+    fetchApi_list()
+    
+  }, [])
+  const fetchApi_list = () => {
+    fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=ef20d6ed14a14b329904621f3c98412b')
+        .then((res) => res.json())
+        .then((json) => {
+            console.log(json);
+            setarticles(json.articles              );
+        })
+        .catch((error) => console.error(error));
+};
+  // Calculate the index range for the current page
+  const indexOfLastArticle = currentPage * ArticlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - ArticlesPerPage;
+  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+
+  // Handle page change
+  const handlePageChange = (totalPages) => {
+    setCurrentPage(totalPages);
+  };
+
+  // Generate an array of page numbers
+  const pageNumbers = Array.from({ length: currentPage }, (_, index) => index + 1);
+
   return (
+    <>
     <Container>
-      <BoldTitle variant="h6">All articles
-      </BoldTitle>
+      <BoldTitle variant="h6">All articles</BoldTitle>
       <Grid container spacing={2}>
-        {articles.map((article) => (
-          <Grid item xs={6} key={article.id}>
+        {currentArticles.map((article) => (
+          <Grid item xs={12} sm={6} md={6} key={article.id}>
             <ArticleContainer>
-              <img src={article.imageUrl} alt={article.title} width="75%" />
+              <img src={article.urlToImage} alt={article.title} width="100%" />
               <BoldTitle variant="h6">{article.title}</BoldTitle>
             </ArticleContainer>
           </Grid>
         ))}
-      </Grid>
-    </Container>
+      </Grid><br/><br/>
+      <PaginationContainer>
+        <PaginationButton
+          variant="outlined"
+          onClick={() => handlePageChange(currentPage - 1)}
+
+
+          disabled={currentPage === 1}
+        >
+          Previous
+        </PaginationButton>
+        {pageNumbers.map((pageNumber) => (
+          <PaginationButton
+            key={pageNumber}
+            variant={currentPage === pageNumber ? 'contained' : 'outlined'}
+            onClick={() => handlePageChange(pageNumber)}
+          >
+            {pageNumber}
+          </PaginationButton>
+        ))}
+        <PaginationButton
+          variant="outlined"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === pageNumbers}
+        >
+          Next
+        </PaginationButton>
+      </PaginationContainer>
+    </Container></>
   );
 };
 

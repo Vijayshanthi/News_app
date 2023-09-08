@@ -7,7 +7,7 @@ const Blogs = () => {
   return (
     <div>
       <Grid container ><Grid item xs={2}></Grid><Grid item xs={8}><Headline
-        imageUrl="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_800/https://allnigeriainfo.ng/wp-content/uploads/2019/02/iDONSABI_headline-800x445-2.jpg"
+        imageUrl="https://st.adda247.com/https://wpassets.adda247.com/wp-content/uploads/multisite/sites/5/2023/09/06121713/0cae5c5bc9.jpg"
         title="A few words about this blog platform, Ghost, and how this site was made"
         description="Why Ghost (& Figma) instead of Medium, WordPress or other options?"
       />

@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
 
-const HeadlineContainer = styled('div')({
+const ContentContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -10,7 +10,7 @@ const HeadlineContainer = styled('div')({
   padding: '16px', marginBottom: '10px'
 });
 
-const HeadlineImage = styled('img')({
+const ContentImage = styled('img')({
   maxWidth: '100%',
   height: 'auto',
 });
@@ -19,16 +19,16 @@ const BoldTitle = styled(Typography)({
   fontWeight:'Bold',
 });
 
-const Headline = ({ imageUrl, title, description }) => {
+const Content = ({ imageUrl, title, description }) => {
   return (
-    <HeadlineContainer>
-      <HeadlineImage src={imageUrl} alt="Headline" />
+    <ContentContainer>
+      <ContentImage src={imageUrl} alt="Content" />
       <Box mt={2}>
         <BoldTitle variant="h6">{title}</BoldTitle>
       </Box>
       <Typography variant="body1">{description}</Typography>
-    </HeadlineContainer>
+    </ContentContainer>
   );
 };
 
-export default Headline;
+export default Content;
