@@ -41,7 +41,7 @@ const Articles = () => {
     
   }, [])
   const fetchApi_list = () => {
-    fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=ef20d6ed14a14b329904621f3c98412b')
+    fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=d1cec59dccd247ed8d8edc69c11009c2')
         .then((res) => res.json())
         .then((json) => {
             console.log(json);
@@ -52,7 +52,7 @@ const Articles = () => {
   // Calculate the index range for the current page
   const indexOfLastArticle = currentPage * ArticlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - ArticlesPerPage;
-  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+  const currentArticles = articles&&articles.length>0?articles.slice(indexOfFirstArticle, indexOfLastArticle):[];
 
 
   // Handle page change

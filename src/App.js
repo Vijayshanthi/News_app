@@ -16,7 +16,7 @@ function App() {
       <Topbar />
       <Container>
         <Routes >
-          <Route path="/" element={<Blogs />} /> {/* Use element and remove index */}
+        <Route path="/blogs/:id" component={<Blogs/>} /> 
           <Route path="/links" element={<Links />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<About />} />

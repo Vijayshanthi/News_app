@@ -19,7 +19,7 @@ const Api = () => {
             },
             body: JSON.stringify(newdata)
         };
-        fetch("https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=ef20d6ed14a14b329904621f3c98412b", request)
+        fetch("https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=d1cec59dccd247ed8d8edc69c11009c2", request)
             .then((res) => res.json())
             .then((json) => {
                 alert("successfully created");
@@ -35,7 +35,7 @@ const Api = () => {
     })
 }
     const fetchApi_list = () => {
-        fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=ef20d6ed14a14b329904621f3c98412b')
+        fetch('https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=d1cec59dccd247ed8d8edc69c11009c2')
             .then((res) => res.json())
             .then((json) => {
                 console.log(json);
@@ -50,7 +50,7 @@ const Api = () => {
                 'content-Type': 'application/json'
             },
         };
-        fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=ef20d6ed14a14b329904621f3c98412b${id}`, request)
+        fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=d1cec59dccd247ed8d8edc69c11009c2${id}`, request)
             .then((res) => res.json())
             .then((json) => {
                 fetchApi_list();
@@ -71,7 +71,7 @@ const handleupdate =(id) =>{
         },
         body: JSON.stringify(newdata)
     };
-    fetch(`https://64d461f2b592423e469410ba.mockapi.io/api/v1/Api/${id}`, request)
+    fetch(`https://newsapi.org/v2/everything?q=tesla&from=2023-08-07&sortBy=publishedAt&apiKey=d1cec59dccd247ed8d8edc69c11009c2${id}`, request)
         .then((res) => res.json())
         .then((json) => {
             alert("Updated successfully");

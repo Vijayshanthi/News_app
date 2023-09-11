@@ -7,7 +7,7 @@ const Topbar = () => {
       <AppBar position="Fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
         <Typography variant="h4" component="div" style={{ color: 'Black',fontWeight: 'bold' }}>
-          PYRA NEWS      </Typography>
+          NORDIC ROSE    </Typography>
         <Box sx={{ marginLeft: 'auto' }}>
           <Button component={Link} to="/" color="inherit"  style={{ color: 'Black',fontWeight: 'bold' }}>Blog</Button>
           <Button component={Link} to="/links" color="inherit" style={{ color: 'Black', fontWeight: 'bold' }}>About</Button>
