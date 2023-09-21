@@ -1,0 +1,8 @@
+/* BlogDetail.css */
+.blog-detail img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 10px; /* Add padding to the image */
+  }
+  

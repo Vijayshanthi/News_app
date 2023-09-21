@@ -5,6 +5,7 @@ import { styled } from "@mui/system";
 import axios from "axios";
 import Pagination from "./Pagination";
 import { useNavigate } from "react-router-dom";
+
 import "./Articles.css"; // Import your CSS file
 
 
@@ -26,17 +27,20 @@ const Articles = () => {
   const [articles, setarticles] = useState([]);
   const navigate = useNavigate();
 
+
+
   const fetchApi_list = () => {
     axios
-      .get("https://app.apicem.io/api//users/news", {
-        headers: {
+      .get("http://localhost:3000/users", {
+     /*   headers: {
           accesstoken:
             "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoVHlwZSI6InVzZXJzIiwidG9rZW4iOiJTZFYxN3NDWWtCIiwiaWF0IjoxNjk0NDE2MjA0fQ.HCkXif_Xbsvn9ypJfHSeZCx4z6O3ukGx4C_6bz_EcYrYqZw-nK3NtkCJkqBn4jlPDHF58hqbbo1AY_FF1VEDgv6uZNlqV81_YDk5E8cyTlzfaZ0VSdAo0lD-nL858gCAyywhyH4Ci67PyOO8h_17IngYK4lNNGeQi2IspCrzlT4",
-        },
+        },*/
       })
       .then((json) => {
-        if (!json.data.error) {
-          setarticles(json.data.data);
+        console.log(json)
+        if (true) {
+          setarticles(json.data);
         }
       })
       .catch((error) => console.error(error));
@@ -56,6 +60,7 @@ const Articles = () => {
 
  
   React.useEffect(() => {
+    console.log('wring')
     fetchApi_list();
   }, []);
 
@@ -64,6 +69,7 @@ const Articles = () => {
     <Container className="container">
         <BoldTitle variant="h6">All articles</BoldTitle>
         <Grid container spacing={2}>{console.log(currentArticles)}
+      
           {currentArticles.map((article,index) => (
             <Grid item xs={12} sm={6} md={6} key={index}>
               <ArticleContainer>
@@ -71,9 +77,9 @@ const Articles = () => {
                   src={article.image}
                   alt={'article'}
                   width="100%"
-                  onClick={()=>{navigate(`/blogdetails/${index}`)}}
+                  onClick={()=>{navigate(`/blogdetails/${article.id}`)}}
                 />
-                <BoldTitle variant="h6">{article.headline}</BoldTitle>
+                <BoldTitle variant="h6">{article.Headlines}</BoldTitle>
               </ArticleContainer>
             </Grid>
           ))}
